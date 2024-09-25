@@ -8,6 +8,9 @@ use App\Models\Post;
 use App\Http\Requests\PostRequest;
 use Illuminate\Support\Str;
 use App\Models\Type;
+use App\Models\Tag;
+
+
 
 class PostController extends Controller
 {
@@ -42,6 +45,10 @@ class PostController extends Controller
         $post->reading_time = $request->reading_time;
         $post->save();
 
+        if ($request->has('tags')) {
+            $post->tags()->attach($request->tags);
+        }
+
         return redirect()->route('admin.posts.index')->with('success', 'Post creato con successo!');
     }
 
@@ -59,9 +66,10 @@ class PostController extends Controller
      */
     public function edit(string $id)
     {
-        $post = Post::find($id);
+        $post = Post::with('tags')->find($id);
         $types = Type::all();
-        return view('admin.posts.edit', compact('post', 'types'));
+        $tags = Tag::all();
+        return view('admin.posts.edit', compact('post', 'types', 'tags'));
     }
 
     /**
@@ -77,6 +85,11 @@ class PostController extends Controller
         $post->reading_time = $request->reading_time;
         $post->save();
 
+        if ($request->has('tags')) {
+            $post->tags()->sync($request->tags);
+        } else {
+            $post->tags()->detach();
+        }
 
         return redirect()->route('admin.posts.index')->with('success', 'Post aggiornato con successo!');
     }

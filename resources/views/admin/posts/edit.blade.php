@@ -55,6 +55,15 @@
             @enderror
         </div>
 
+        <h3>Tags</h3>
+        @foreach ($tags as $tag)
+            <div>
+                <input type="checkbox" id="tag_{{ $tag->id }}" name="tags[]" value="{{ $tag->id }}"
+                    {{ in_array($tag->id, $post->tags->pluck('id')->toArray()) ? 'checked' : '' }}>
+                <label for="tag_{{ $tag->id }}">{{ $tag->name }}</label>
+            </div>
+        @endforeach
+
         <button type="submit" class="btn btn-primary">Aggiorna</button>
     </form>
 @endsection

@@ -13,7 +13,7 @@ class TagsTableSeeder extends Seeder
      */
     public function run(): void
     {
-        $tags = ['front-end', 'UX', 'Vue', 'Js', 'Back-end'];
+        $tags = ['front', 'UX', 'Vue', 'Js', 'Back'];
 
         foreach ($tags as $tag) {
             Tag::create(['name' => $tag, 'slug' => $tag]);
