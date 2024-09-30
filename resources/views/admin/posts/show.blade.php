@@ -11,5 +11,13 @@
     <div>
         {{ $post->text }}
     </div>
+    <div>
+        <<p><strong>Tag associati:</strong></p>
+            <ul>
+                @foreach ($post->tags as $tag)
+                    <li>{{ $tag->name }}</li>
+                @endforeach
+            </ul>
+    </div>
     <a href="{{ route('admin.posts.index') }}" class="btn btn-secondary mt-3">Torna all'elenco</a>
 @endsection

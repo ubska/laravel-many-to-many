@@ -9,8 +9,7 @@ use App\Http\Requests\PostRequest;
 use Illuminate\Support\Str;
 use App\Models\Type;
 use App\Models\Tag;
-
-
+use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
 {

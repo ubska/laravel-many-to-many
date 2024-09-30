@@ -13,7 +13,7 @@ class Post extends Model
     {
         return $this->belongsTo(Type::class);
     }
-    protected $fillable = ['title', 'slug', 'content', 'reading_time', 'type_id'];
+    protected $fillable = ['title', 'slug', 'content', 'reading_time', 'type_id', 'image_original_name', 'path_image'];
 
     public function tags()
     {

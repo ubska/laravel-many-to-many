@@ -17,6 +17,8 @@ return new class extends Migration
             $table->string('slug')->unique();
             $table->text('text');
             $table->tinyInteger('reading_time')->nullable();
+            $table->string('image_original_name')->nullable();
+            $table->string('path_image')->nullable();
             $table->timestamps();
         });
     }

@@ -11,7 +11,7 @@
         </div>
     @endif
 
-    <form action="{{ route('admin.posts.store') }}" method="POST">
+    <form action="{{ route('admin.posts.store') }}" enctype="multipart/form-data" method="POST">
         @csrf
         <div class="mb-3">
             <label for="title" class="form-label">Titolo</label>
@@ -34,6 +34,11 @@
             @error('content')
                 <div class="text-danger">{{ $message }}</div>
             @enderror
+        </div>
+        <div class="mb-3">
+            <label for="file" class="form-label">Img</label>
+            <input type="file" name="img">
+            <button type="submit">Upload</button>
         </div>
         <div class="mb-3">
             <label for="type_id" class="form-label">Tipo</label>
