@@ -10,8 +10,8 @@
                 <th scope="col">Data</th>
                 <th scope="col">Type</th>
                 <th scope="col">Tags</th>
+                <th scope="col">Immagine</th>
                 <th scope="col">Azioni</th>
-
             </tr>
         </thead>
         <tbody>
@@ -36,7 +36,14 @@
                             @endforeach
                         @endif
                     </td>
-
+                    <td>
+                        @if ($post->path_image)
+                            <img src="{{ asset('storage/' . $post->path_image) }}" alt="{{ $post->image_original_name }}"
+                                style="width: 100px; height: auto;">
+                        @else
+                            <span>Nessuna immagine</span>
+                        @endif
+                    </td>
                     <td>
                         <a href="{{ route('admin.posts.show', $post->id) }}" class="btn btn-info btn-sm">Show</a>
                         <a href="{{ route('admin.posts.edit', $post->id) }}" class="btn btn-warning btn-sm">Edit</a>
@@ -46,10 +53,7 @@
                             @method('DELETE')
                             <button type="submit" class="btn btn-danger btn-sm">Delete</button>
                         </form>
-
                     </td>
-
-
                 </tr>
             @endforeach
         </tbody>
