@@ -44,6 +44,20 @@ class PostController extends Controller
         $post->reading_time = $request->reading_time;
         $post->save();
 
+        // Gestisci il caricamento dell'immagine
+        if ($request->hasFile('img')) {
+            // Ottieni il file caricato
+            $image = $request->file('img');
+            // Genera un nome univoco per l'immagine
+            $imageName = time() . '_' . $image->getClientOriginalName();
+            // Salva l'immagine nella cartella 'public/uploads'
+            $imagePath = $image->storeAs('uploads', $imageName, 'public');
+            // Salva il percorso dell'immagine nel post
+            $post->path_image = $imagePath;
+            $post->image_original_name = $image->getClientOriginalName();
+            $post->save();
+        }
+
         if ($request->has('tags')) {
             $post->tags()->attach($request->tags);
         }

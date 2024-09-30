@@ -19,5 +19,9 @@
                 @endforeach
             </ul>
     </div>
+    @if ($post->path_image)
+        <img src="{{ asset('storage/' . $post->path_image) }}" alt="{{ $post->title }}" class="img-fluid">
+    @endif
+
     <a href="{{ route('admin.posts.index') }}" class="btn btn-secondary mt-3">Torna all'elenco</a>
 @endsection

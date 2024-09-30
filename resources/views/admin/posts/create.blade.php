@@ -35,24 +35,26 @@
                 <div class="text-danger">{{ $message }}</div>
             @enderror
         </div>
+        <!-- Campo per il caricamento dell'immagine -->
         <div class="mb-3">
             <label for="file" class="form-label">Img</label>
             <input type="file" name="img">
-            <button type="submit">Upload</button>
-        </div>
-        <div class="mb-3">
-            <label for="type_id" class="form-label">Tipo</label>
-            <select class="form-select" id="type_id" name="type_id">
-                <option value="">Seleziona un tipo</option>
-                @foreach ($types as $type)
-                    <option value="{{ $type->id }}" {{ old('type_id') == $type->id ? 'selected' : '' }}>
-                        {{ $type->name }}</option>
-                @endforeach
-            </select>
-            @error('type_id')
+            @error('img')
                 <div class="text-danger">{{ $message }}</div>
             @enderror
-        </div>
-        <button type="submit" class="btn btn-primary">Salva</button>
+            <div class="mb-3">
+                <label for="type_id" class="form-label">Tipo</label>
+                <select class="form-select" id="type_id" name="type_id">
+                    <option value="">Seleziona un tipo</option>
+                    @foreach ($types as $type)
+                        <option value="{{ $type->id }}" {{ old('type_id') == $type->id ? 'selected' : '' }}>
+                            {{ $type->name }}</option>
+                    @endforeach
+                </select>
+                @error('type_id')
+                    <div class="text-danger">{{ $message }}</div>
+                @enderror
+            </div>
+            <button type="submit" class="btn btn-primary">Salva</button>
     </form>
 @endsection
